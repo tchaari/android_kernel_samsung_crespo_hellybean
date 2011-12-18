@@ -303,7 +303,7 @@ void s5pv210_unlock_dvfs_high_level(unsigned int nToken)
 	}
 
 	//mutex_unlock(&dvfs_high_lock);
-	
+
 /* Reevaluate cpufreq policy with the effect of calling the governor with a
 * CPUFREQ_GOV_LIMITS event, so that the governor sets its preferred
 * frequency with the new (or no) DVFS limit. */
