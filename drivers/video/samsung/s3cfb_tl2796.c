@@ -51,6 +51,10 @@
 extern void init_mdnie_class(void);
 #endif
 
+#ifdef CONFIG_FB_S3C_MDNIE
+extern void init_mdnie_class(void);
+#endif
+
 static const struct tl2796_gamma_adj_points default_gamma_adj_points = {
 	.v0 = BV_0,
 	.v1 = BV_1,
