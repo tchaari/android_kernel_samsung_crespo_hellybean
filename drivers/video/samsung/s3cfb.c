@@ -47,6 +47,11 @@
 #include <mach/regs-clock.h>
 #endif
 
+#ifdef CONFIG_FB_S3C_MDNIE
+#include "s3cfb_mdnie.h"
+#include <linux/delay.h>
+#endif
+
 #if (CONFIG_FB_S3C_NUM_OVLY_WIN >= CONFIG_FB_S3C_DEFAULT_WINDOW)
 #error "FB_S3C_NUM_OVLY_WIN should be less than FB_S3C_DEFAULT_WINDOW"
 #endif
@@ -1061,7 +1066,7 @@ static int __devinit s3cfb_probe(struct platform_device *pdev)
 #endif
 	s3cfb_set_window(fbdev, pdata->default_win, 1);
 
-	//s3cfb_set_alpha_value_width(fbdev, pdata->default_win);
+	s3cfb_set_alpha_value_width(fbdev, pdata->default_win);
 
 	s3cfb_display_on(fbdev);
 
@@ -1078,8 +1083,10 @@ static int __devinit s3cfb_probe(struct platform_device *pdev)
 	if (pdata->backlight_on)
 		pdata->backlight_on(pdev);
 #endif
+#ifndef CONFIG_MACH_ARIES
 	if (!bootloaderfb && pdata->reset_lcd)
 		pdata->reset_lcd(pdev);
+#endif
 #endif
 
 #ifdef CONFIG_HAS_EARLYSUSPEND
@@ -1269,7 +1276,7 @@ void s3cfb_late_resume(struct early_suspend *h)
 	s3c_mdnie_init_global(fbdev);
 	s3c_mdnie_start(fbdev);
 #endif
-	//s3cfb_set_alpha_value_width(fbdev, pdata->default_win);
+	s3cfb_set_alpha_value_width(fbdev, pdata->default_win);
 
 	s3cfb_display_on(fbdev);
 
