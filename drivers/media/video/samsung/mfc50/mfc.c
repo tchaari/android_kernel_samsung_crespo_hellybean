@@ -458,7 +458,7 @@ static int mfc_mmap(struct file *filp, struct vm_area_struct *vma)
 	if (vir_size > phy_size) {
 		mfc_err("virtual requested mem(%ld) is bigger than physical mem(%ld)\n",
 				vir_size, phy_size);
-		return -EINVAL;
+		vir_size = phy_size;
 	}
 
 	mfc_ctx->port0_mmap_size = (vir_size / 2);
