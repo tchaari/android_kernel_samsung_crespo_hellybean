@@ -47,6 +47,7 @@
 #include <mach/adc.h>
 #include <mach/param.h>
 #include <mach/system.h>
+#include <mach/voltages.h>
 
 #include <linux/usb/gadget.h>
 #include <linux/fsa9480.h>
@@ -428,32 +429,40 @@ static struct s5p_media_device herring_media_devs[] = {
 static struct s5pv210_cpufreq_voltage smdkc110_cpufreq_volt[] = {
 	{
 		.freq	= 1400000,
-		.varm	= 1420000,
-		.vint	= 1180000,
+		.varm	= DVSARM1,
+		.vint	= DVSINT1,
 	}, {
+
+		.freq	= 1300000,
+		.varm	= DVSARM2,
+		.vint	= DVSINT2,
+	}, {
+
 		.freq	= 1200000,
-		.varm	= 1320000,
-		.vint	= 1110000,
+		.varm	= DVSARM3,
+		.vint	= DVSINT3,
 	}, {
 		.freq	= 1000000,
-		.varm	= 1275000,
-		.vint	= 1100000,
+		.varm	= DVSARM4,
+		.vint	= DVSINT4,
 	}, {
+
 		.freq	=  800000,
-		.varm	= 1200000,
-		.vint	= 1100000,
+		.varm	= DVSARM5,
+		.vint	= DVSINT5,
 	}, {
+
 		.freq	=  400000,
-		.varm	= 1050000,
-		.vint	= 1100000,
+		.varm	= DVSARM6,
+		.vint	= DVSINT5,
 	}, {
 		.freq	=  200000,
-		.varm	=  950000,
-		.vint	= 1100000,
+		.varm	= DVSARM7,
+		.vint	= DVSINT5,
 	}, {
 		.freq	=  100000,
-		.varm	=  950000,
-		.vint	= 1000000,
+		.varm	= DVSARM8,
+		.vint	= DVSINT6,
 	},
 };
 

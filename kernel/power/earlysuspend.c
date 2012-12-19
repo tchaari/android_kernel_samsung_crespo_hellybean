@@ -32,6 +32,10 @@ static unsigned long lPolicyMinOldFreq;
 unsigned int uIsSuspended;
 #endif
 
+#if defined(CONFIG_LIVE_OC) && defined(CONFIG_CPU_DIDLE)
+extern unsigned long cpuL4freq(void);
+#endif
+
 enum {
 	DEBUG_USER_STATE = 1U << 0,
 	DEBUG_SUSPEND = 1U << 2,
@@ -199,6 +203,10 @@ void request_suspend_state(suspend_state_t new_state)
         if ((new_state == PM_SUSPEND_MEM) && (uIsSuspended == 0)) {
             lMinOldFreq = policy->max;
             lPolicyMinOldFreq = policy->user_policy.max;
+#ifdef CONFIG_LIVE_OC
+            policy->user_policy.max = cpuL4freq();
+            policy->max = cpuL4freq();
+#endif
             policy->user_policy.max = 800000;
             policy->max = 800000;
             cpufreq_cpu_put(policy);
