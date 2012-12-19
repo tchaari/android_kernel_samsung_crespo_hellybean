@@ -25,6 +25,11 @@ config CPU_DIDLE
         help
           Enable DEEP IDLE support for S5PV210 CPU.
 
+config DVFS_LIMIT
+	bool "DVFS limit"
+	depends on CPU_FREQ
+	default n
+
 config S5PV210_SETUP_I2C1
 	bool
 	default	y
