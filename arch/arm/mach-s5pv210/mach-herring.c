@@ -5611,8 +5611,7 @@ unsigned int HWREV;
 EXPORT_SYMBOL(HWREV);
 
 static void check_bigmem(void) {
-	int bootmode = __raw_readl(S5P_INFORM6);
-	if (bootmode == 9) {
+	if (__raw_readl(S5P_INFORM6) == 0x9) { // mode=9
 		bigmem = true;
 		herring_media_devs[2].memsize = S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMC0_BM;
 		herring_media_devs[4].memsize = S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMC2_BM;
