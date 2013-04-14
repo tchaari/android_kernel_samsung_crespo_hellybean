@@ -318,8 +318,6 @@ struct s3cfb_next_info {
 #define S3CFB_SET_WIN_ADDR		_IOW('F', 309, unsigned long)
 #define S3CFB_SET_WIN_MEM		_IOW('F', 310, \
 						enum s3cfb_mem_owner_t)
-// New IOCTL that waits for vsync and returns a timestamp
-#define S3CFB_WAIT_FOR_VSYNC		_IOR('F', 311, u64)
 
 /*
  * E X T E R N S
