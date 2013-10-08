@@ -68,6 +68,3 @@ extern void disable_sof(void);
 }
 #endif
 #endif /* _ISR_H_ */
-
-
-
