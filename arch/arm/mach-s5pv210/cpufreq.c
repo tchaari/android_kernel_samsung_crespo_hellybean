@@ -1095,7 +1095,7 @@ finish:
 	return cpufreq_register_driver(&s5pv210_driver);
 }
 
-static struct platform_driver s5pv210_cpufreq_drv = {
+static struct platform_driver s5pv210_cpufreq_driver = {
 	.probe		= s5pv210_cpufreq_probe,
 	.driver		= {
 		.owner	= THIS_MODULE,
@@ -1107,7 +1107,7 @@ static int __init s5pv210_cpufreq_init(void)
 {
 	int ret;
 
-	ret = platform_driver_register(&s5pv210_cpufreq_drv);
+	ret = platform_driver_register(&s5pv210_cpufreq_driver);
 	if (!ret)
 		pr_info("%s: S5PV210 cpu-freq driver\n", __func__);
 	return ret;
