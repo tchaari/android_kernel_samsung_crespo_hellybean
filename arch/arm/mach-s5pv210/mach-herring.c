@@ -5630,6 +5630,9 @@ unsigned int HWREV;
 EXPORT_SYMBOL(HWREV);
 
 static void check_bigmem(void) {
+
+	printk(KERN_INFO "Bigmem : S5P_INFORM6=%d\n",
+				__raw_readl(S5P_INFORM6));
 	if (__raw_readl(S5P_INFORM6) == 0x9) { // mode=9
 		bigmem = true;
 		herring_media_devs[2].memsize = S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMC0_BM;
@@ -5836,6 +5839,8 @@ static void herring_pm_restart(char mode, const char *cmd)
 static void __init herring_machine_init(void)
 {
 	arm_pm_restart = herring_pm_restart;
+
+	check_bigmem();
 
 	setup_ram_console_mem();
 	platform_add_devices(herring_devices, ARRAY_SIZE(herring_devices));
