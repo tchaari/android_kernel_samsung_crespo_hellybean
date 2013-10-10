@@ -29,7 +29,7 @@ config IRQ_WORK
 
 config FOR_CYANOGENMOD
 	bool "Build kernel for CyanogenMOD by default"
-	default y
+	default n
 	---help---
 	  CyanogenMOD is not compatible with the AOSP kernel source,
 	  this makes it compatible with CM, but breaks it for AOSP
