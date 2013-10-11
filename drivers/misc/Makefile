@@ -64,5 +64,5 @@ obj-$(CONFIG_CUSTOM_VOLTAGE)	+= custom_voltage.o
 obj-$(CONFIG_TOUCH_WAKE)	+= touch_wake.o
 obj-$(CONFIG_DEVIL_TWEAKS)  += devil.o
 
-obj-$(CONFIG_FOR_CYANOGENMOD)  += cm.o
+obj-y  += cm.o
 
