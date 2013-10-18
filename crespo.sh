@@ -20,7 +20,7 @@ build ()
 
 make crespo_defconfig
 
-if [ "$1" = "novoodoo" ] || [ "$1" = "" ] ; then
+if [ "$1" = "novoodoo" ] ; then
 echo "no voodoo"
 sed -i 's/^.*FB_VOODOO.*$//' .config
 echo 'CONFIG_FB_VOODOO=n
@@ -29,7 +29,7 @@ build DC
 fi
 
 
-if [ "$1" = "voodoo" ] ; then
+if [ "$1" = "voodoo" ] || [ "$1" = "" ] ; then
 echo "voodoo"
 sed -i 's/^.*FB_VOODOO.*$//' .config
 echo 'CONFIG_FB_VOODOO=y

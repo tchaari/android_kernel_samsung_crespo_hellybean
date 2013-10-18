@@ -153,13 +153,17 @@ static int herring_notifier_call(struct notifier_block *this,
 			mode = REBOOT_MODE_RECOVERY;
 		else if (!strcmp((char *)_cmd, "bootloader"))
 			mode = REBOOT_MODE_FAST_BOOT;
-		else
+		else {
       		   if (bigmem)
         		mode = 9;
       		   else
         	      	mode = REBOOT_MODE_NONE;
+		}
 	}
 	__raw_writel(mode, S5P_INFORM6);
+
+	int bootmode = __raw_readl(S5P_INFORM6);
+	printk(KERN_INFO "Bigmem reboot: bootmode=%d\n", bootmode);
 
 	return NOTIFY_DONE;
 }
@@ -5630,10 +5634,9 @@ unsigned int HWREV;
 EXPORT_SYMBOL(HWREV);
 
 static void check_bigmem(void) {
-
-	printk(KERN_INFO "Bigmem : S5P_INFORM6=%d\n",
-				__raw_readl(S5P_INFORM6));
-	if (__raw_readl(S5P_INFORM6) == 0x9) { // mode=9
+	int bootmode = __raw_readl(S5P_INFORM6);
+	printk(KERN_INFO "Bigmem : bootmode=%d\n", bootmode);
+	if (bootmode == 9) { // mode=9
 		bigmem = true;
 		herring_media_devs[2].memsize = S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMC0_BM;
 		herring_media_devs[4].memsize = S5PV210_VIDEO_SAMSUNG_MEMSIZE_FIMC2_BM;
