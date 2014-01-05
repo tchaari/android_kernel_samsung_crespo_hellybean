@@ -13,7 +13,7 @@
 
 #define DEVIL_TWEAKS_VERSION 1
 
-static bool smooth_ui_enabled = true;
+static bool smooth_ui_enabled = false;
 static bool smooth_governors_enabled = false;
 static bool powersave_governors_enabled = false;
 static int governors_profile = 0;
